@@ -143,18 +143,16 @@ def unlimited(round=5):
     
     stop_threads = False
     def detectInterrpt(interval=5):
-        while(True):
+        nonlocal stop_threads 
+        while not stop_threads:
             sleep(5)
             op.retryBtn()
-            nonlocal stop_threads 
-            if stop_threads: 
-                break
     
     th_intrpt = Thread(target=detectInterrpt)
     th_intrpt.start()
 
     for _ in range(1, round + 1):
-        touch([650, 800], 120)
+        touch([650, 800], 135)
         try:
             resetPresent()
         except:
@@ -163,4 +161,3 @@ def unlimited(round=5):
     
     stop_threads = True
     th_intrpt.join()
-
