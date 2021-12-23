@@ -16,8 +16,8 @@ logging.basicConfig(level='INFO')
 def main():
     # 执行编队
     wrapTimes(teamlls)(calcRound(consume=5, now=121))
-    # 抽无限池
-    unlimited(10)
+    # 抽无限池，需要手动进入无限池的页面。或者写三行 touch 自动进去
+    # unlimited(10)
     logging.info("肝完了")
 
 # 3T 编队脚本
