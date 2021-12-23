@@ -219,7 +219,7 @@ def wrapTimes(team_func):
     round = 1
     def wrapped(times:int):
         nonlocal round
-        while(round != times):
+        while(round <= times):
             logging.info("执行第 %d 轮",round)
             logging.info("剩余执行轮数: %d", times - round)
             team_func(times - round)
