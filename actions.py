@@ -124,7 +124,7 @@ class op:
             touch(coor)
     
     @staticmethod
-    def retryBtn():
+    def retryImg():
         coor = exists(Template(r"common/重试.jpeg"))
         if coor: 
             touch(coor)

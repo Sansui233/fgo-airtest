@@ -59,7 +59,7 @@ def teamlls(left_round=0):
             record_pos=(-0.081, 0.086),
             resolution=(2208, 1242),
         ),
-        timeout=10,
+        timeout=20,
         interval=1,
     )
     op.skillChoose(3, 1, 0.5)
@@ -87,7 +87,7 @@ def teamlls(left_round=0):
             record_pos=(-0.081, 0.086),
             resolution=(2208, 1242),
         ),
-        timeout=10,
+        timeout=20,
         interval=1,
     )
     op.skillChoose(1, 2, 0.5)
@@ -108,7 +108,7 @@ def teamlls(left_round=0):
             record_pos=(-0.081, 0.086),
             resolution=(2208, 1242),
         ),
-        timeout=10,
+        timeout=20,
         interval=1,
     )
     op.skillChoose(2, 3)
@@ -170,7 +170,7 @@ def teamlls(left_round=0):
         Template(
             r"common/与从者的羁绊.png", record_pos=(-0.351, -0.136), resolution=(2208, 1242)
         ),
-        timeout=20,
+        timeout=45,
         interval=1,
     )
     touch((100, 10))
