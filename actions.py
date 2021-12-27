@@ -128,6 +128,10 @@ class op:
         coor = exists(Template(r"common/重试.jpeg"))
         if coor: 
             touch(coor)
+    
+    def closeFrdApplication():
+        touch([585,1063])
+        sleep(.5)
 
 
 def unlimited(round=5):
@@ -146,7 +150,7 @@ def unlimited(round=5):
         nonlocal stop_threads 
         while not stop_threads:
             sleep(5)
-            op.retryBtn()
+            op.retryImg()
     
     th_intrpt = Thread(target=detectInterrpt)
     th_intrpt.start()

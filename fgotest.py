@@ -180,6 +180,7 @@ def teamlls(left_round=0):
     touch((100, 10))
     sleep(1)  # 防止意外情况，升级什么的
     op.nextBtn()
+    op.closeFrdApplication()
     op.continueBattleBtn()
     if left_round != 0:
         op.eatApple()
