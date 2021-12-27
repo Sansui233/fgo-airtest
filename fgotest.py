@@ -11,7 +11,9 @@ import logging
 
 auto_setup(__file__)
 connect_device("iOS:///127.0.0.1:8100")
-logging.basicConfig(level='INFO')
+logging.basicConfig(level='INFO') # 设置此脚本 log 级别
+logger = logging.getLogger("airtest")
+logger.setLevel(logging.ERROR) # 设置 airtest log 级别
 
 def main():
     # 执行编队
