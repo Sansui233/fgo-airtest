@@ -11,15 +11,11 @@ import logging
 
 auto_setup(__file__)
 connect_device("iOS:///127.0.0.1:8100")
-logging.basicConfig(level='INFO') # 设置此脚本 log 级别
-logger = logging.getLogger("airtest")
-logger.setLevel(logging.ERROR) # 设置 airtest log 级别
 
 def main():
-    # 执行编队
-    wrapTimes(teamlls)(calcRound(consume=5, now=121))
-    # 抽无限池，需要手动进入无限池的页面。或者写三行 touch 自动进去
-    # unlimited(10)
+    setLog() # 控制 Log 输出级别
+    wrapTimes(teamlls)(calcRound(consume=5, now=121)) # 执行编队，消耗 5 苹果左右
+    # unlimited(10) # 抽无限池，需要先手动进入无限池的页面
     logging.info("肝完了")
 
 # 3T 编队脚本
@@ -229,6 +225,12 @@ def wrapTimes(team_func):
             round += 1
     return wrapped
 
+def setLog():
+    logger = logging.getLogger("airtest")
+    logger.setLevel(logging.ERROR)
+
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
+    logging.getLogger().handlers[0].setFormatter(logging.Formatter('%(asctime)s [%(levelname)s] %(message)s'))
 
 # 主程序
 if __name__ == "__main__":
