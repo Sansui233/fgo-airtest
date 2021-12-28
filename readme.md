@@ -3,8 +3,8 @@
 FGO 全自动刷本 3T 脚本模板，速度接近手刷。对手机的控制依赖于 [Airtest](https://airtest.doc.io.netease.com/)，Airtest 能连接到的手机即可使用，理论上不限平台。但安卓已经有更方便的脚本了，所以这里主要针对 iOS。
 
 不同平台可使用的自动刷本方法汇总：
-- Windows + Android: [FGO-py](https://github.com/hgjazhgj/FGO-py) 或 模拟器 + 按键精灵
-- Windows + iOS: [虫洞](https://wormhole.app/) + 按键精灵
+- Windows + Android: [FGO-py](https://github.com/hgjazhgj/FGO-py) 或 模拟器 + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))
+- Windows + iOS: [虫洞](https://er.run/) + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))
 - Mac + iOS: Airtest
 - Mac + Android: Airtest 或 模拟器 + 按键精灵
 
