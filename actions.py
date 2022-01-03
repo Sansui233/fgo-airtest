@@ -44,9 +44,8 @@ class op:
         coor = exists(Template(r"common/黄金果实.PNG"))
         if coor:
             touch(coor)
-            sleep(1)
+            sleep(.3)
             touch([1476, 988])
-            sleep(1)
 
     def masterSkillChoose(num: int, delay=3):
         """
@@ -103,7 +102,6 @@ class op:
             [(1219, 1000), (1379, 1000), (1535, 1000)],
         ]
         touch(positions[servant - 1][skill - 1])
-        sleep(0.3)
         op.skillConfirmBtn(delay)
 
     def skillServantPos(svt: int, delay=3):

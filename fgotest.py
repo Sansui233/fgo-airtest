@@ -1,6 +1,7 @@
 # -*- encoding=utf8 -*-
 from functools import wraps
 from actions import op, unlimited
+from teams.daily import team1
 
 __author__ = "sansui233"
 
@@ -14,9 +15,13 @@ connect_device("iOS:///127.0.0.1:8100")
 
 def main():
     setLog() # 控制 Log 输出级别
-    wrapTimes(teamlls)(calcRound(consume=5, now=121)) # 执行编队，消耗 5 苹果左右
+    wrapTimes(teamlls)(calcRound(consume=5, now=121)) # 执行 teamlls 编队，消耗 5 苹果左右
     # unlimited(10) # 抽无限池，需要先手动进入无限池的页面
     logging.info("肝完了")
+
+    # 其他编队例子见 teams 文件下的 daily.py
+    # 个人的通用周回编队为 team1
+    # wrapTimes(team1)(3) # 执行 team1 3 次
 
 # 3T 编队脚本
 def teamlls(left_round=0):
