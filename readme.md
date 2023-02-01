@@ -6,10 +6,10 @@ FGO 全自动刷本 3T 脚本模板，速度接近手刷。对手机的控制依
 
 <details>
  <summary>不同平台可使用的自动刷本方法汇总：</summary>
-- Windows + Android: [FGO-py](https://github.com/hgjazhgj/FGO-py) 或 模拟器 + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))
-- Windows + iOS: [虫洞](https://er.run/) + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))
-- Mac + iOS: Airtest
-- Mac + Android: Airtest 或 模拟器 + 按键精灵
+<li>Windows + Android: [FGO-py](https://github.com/hgjazhgj/FGO-py) 或 模拟器 + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))</li>
+<li>Windows + iOS: [虫洞](https://er.run/) + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))</li>
+<li>Mac + iOS: Airtest</li>
+<li>Mac + Android: Airtest 或 模拟器 + 按键精灵</li>
 </details>
 
 
