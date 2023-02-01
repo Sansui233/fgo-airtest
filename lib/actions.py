@@ -4,8 +4,11 @@ from cv2 import threshold
 from threading import Thread
 from lib.iphone13_pro import iphone13p as iphone
 
+
 logger = logging.getLogger("actions")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
+logger.handlers[0].setFormatter(
+    logging.Formatter('%(asctime)s [%(levelname)s] [%(name)s] %(message)s'))
 
 
 class op:
@@ -18,6 +21,7 @@ class op:
         (x,y)取值: (1,1)-(1,3)，(2,1)-(2,5)
         第一行宝具卡，第二行普通指令卡
         """
+        logger.debug("攻击")
         touch(iphone.attackBtn)
         sleep(1)
         touch(iphone.attackPos[x - 1][y - 1])
@@ -34,6 +38,7 @@ class op:
         try:
             wait(Template(r"common/攻击.jpeg", threshold=0.8,
                  rgb=True), timeout=timeout, interval=1)
+            logger.debug("补刀")
             op.attack(2, 1, 2, 4, 2, 5, 0)
             sleep(5)
             touch([10, 300])
@@ -131,11 +136,11 @@ class op:
         sleep(.5)
         touch(iphone.continueBattleBtn)
         sleep(1)
-        logger.debug("timing: 吃苹果 %s" % str(eatApple))
+        logger.debug("吃苹果 %s" % str(eatApple))
         if eatApple:
             op._eatApple()
         sleep(3)
-        logger.debug("timing: 结尾动画处理完毕")
+        logger.debug("结尾动画处理完毕")
 
     def _eatApple():
         """
@@ -151,7 +156,7 @@ class op:
             touch(iphone.confirmApple)
             sleep(1.3)
         else:
-            logger.debug("没出现苹果页")
+            logger.debug("无苹果页")
 
     def clickRetry():
         coor = exists(Template(r"common/重试.jpeg"))

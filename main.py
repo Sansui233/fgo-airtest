@@ -52,11 +52,11 @@ def main():
 
 def setLog():
     logger = logging.getLogger("airtest")
-    logger.setLevel(logging.Error)
-    logging.basicConfig(level=logging.DEBUG,
+    logger.setLevel(logging.ERROR)
+    logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s [%(levelname)s] %(message)s')
     logging.getLogger().handlers[0].setFormatter(
-        logging.Formatter('%(asctime)s [%(levelname)s] %(message)s'))
+        logging.Formatter('%(asctime)s [%(levelname)s] [%(name)s] %(message)s'))
 
 
 def calcRound(consume=12, now=139, perApple=139):

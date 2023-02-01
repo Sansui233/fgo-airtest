@@ -1,8 +1,7 @@
 # -*- encoding=utf8 -*-
-import logging
 from airtest.core.api import *
 __author__ = "sansui233"
-from lib.actions import op
+from lib.actions import op, actionlogger
 
 
 def teammogen(left_round=0):
