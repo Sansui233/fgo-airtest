@@ -2,28 +2,32 @@
 
 FGO 全自动刷本 3T 脚本模板，速度接近手刷。对手机的控制依赖于 [Airtest](https://airtest.doc.io.netease.com/)，Airtest 能连接到的手机即可使用，理论上不限平台。但安卓已经有更方便的脚本了，所以这里主要针对 iOS。
 
-不同平台可使用的自动刷本方法汇总：
+
+
+<details>
+ <summary>不同平台可使用的自动刷本方法汇总：</summary>
 - Windows + Android: [FGO-py](https://github.com/hgjazhgj/FGO-py) 或 模拟器 + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))
 - Windows + iOS: [虫洞](https://er.run/) + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))
 - Mac + iOS: Airtest
 - Mac + Android: Airtest 或 模拟器 + 按键精灵
+</details>
 
 
-使用前先部署好环境（这一步可能需要花一些时间）。airtest IDE 可以不用装，但得确保安装 airtest 的 python 模块。
+使用前先部署好环境（这一步需要花亿些时间）。airtest IDE 可以不用装，但得确保安装 airtest 的 python 模块。
 - [Mac + iOS 环境部署教程](https://zhuanlan.zhihu.com/p/414629796)
 - [Airtest 文档](https://airtest.doc.io.netease.com/tutorial/6_IOS_automated_testing/)
 
 ## 运行方式
 
-下载此仓库。仓库中提供一个刷 90+ 本 3T 通用模板，见 `fgotest.py`，包含自动补刀和自动喂金苹果，带自动循环抽无限池。此脚本的入口为助战选择界面，需要进入助战选择界面后开始运行。
+下载此仓库。打开`daily.py`，里面包含三个自用编队，可增加自己的编队。编队的入口为助战选择界面，需要进入助战选择界面后开始运行。
 
 以下运行仅为示例，按自己的编队写的流程，**请先[修改脚本](#修改脚本)，不要直接运行在你的编队上**。
 
 ```shell
-python3 fgotest.py
+python3 main.py 队伍名 运行次数
 ```
 
-## 修改脚本
+## 修改编队
 
 由于每个人 3T 的差异很大，需要根据自己的编队完全重写操作。
 
@@ -37,13 +41,12 @@ python3 fgotest.py
 
 #### 1.1 修改 `actions.py`
 
-战斗中会用到的所有操作（令咒除外）已经封装到 `actions.py`。根据此文件的 API 可以足够灵活而简洁地编写 3T 脚本。
+战斗中会用到的所有操作（令咒除外）已经封装到 `lib/actions.py` 中的 `op` 类。根据此文件的 API 可以足够简洁地编写 3T 脚本。
 
-由于不同手机的分辨率不同，使用时需要先更改为自己手机的坐标。此仓库的坐标基于 iPhone 7 Plus。
-
-如果您愿意贡献其他 iPhone 型号的坐标，欢迎 PR。
+由于不同手机的分辨率不同，使用时需要先更改为自己手机的坐标。此仓库包含 iPhone7 Plus 与 iPhone13 Pro 的坐标。如果您愿意贡献其他 iPhone 型号的坐标，欢迎 PR。
 
 #### 1.2 如何获取按钮坐标
+
 个人推荐的方法是，手机截图后，用 Photoshop、Mac 自带的 preview 一类的工具查看。Preview 在框选图片时会显示框选大小，从左上角开始框选则可取得按钮坐标。其他方法可以网上查阅。
 
 用到的坐标 / 需要截图的界面有：
@@ -58,7 +61,7 @@ python3 fgotest.py
 - 结束战斗时的“连续出击”
 - 无限池重置确认、道具补充完成页（活动用）
 
-上述截图准备好后，修改 `actions.py` 中的所有 `touch`方法中的坐标和`positions`。部分`touch`用的是图片，可不修改。
+上述截图准备好后，在 lib/iphone_example.py 中填入自己手机型号的坐标，并在 action.py 中 import 自己的手机坐标为 iphone 变量。
 
 ### 2. 图像匹配
 
@@ -74,13 +77,12 @@ Template(r"20212020圣诞/lls.png",threshold=0.9,rgb=True)
 
 参考：[Airtest API](https://airtest.readthedocs.io/zh_CN/latest/all_module/airtest.core.api.html)
 
-### 修改 `fgotest.py`
+### 修改 `daily.py`
+根据已有的编队写法，增加自己的编队。需要修改的部分为
+- 助战选择
+- 战斗打法
 
-此文件中包含了一个 3T 编队的基本写法。复制一份，需要修改的部分为
-
-- 助战图
-- 每一回合的操作（使用 `actions.py` 中的 op 类）
-- 补刀识别图（不用补刀可无视）
+并一定要以 `op.ending()` 结尾，此函数会处理最后的动画并自动吃苹果。
 ### 意外情况
 
 对于一些额外情况，比如手机断开连接、网络长时间加载、fgo 闪退等等……此类错误会可能让脚本停止运行，并且无法手动恢复。
