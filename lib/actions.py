@@ -1,3 +1,4 @@
+import logging
 from airtest.core.api import *
 from cv2 import threshold
 from threading import Thread
@@ -44,25 +45,25 @@ class op:
         if not isinstance(friend, str):  # if not string,treate it as coordiante
             touch(friend)
             sleep(1)
-            return
-        swipe_count = 7
-        while True:
-            coor = exists(Template(friend, threshold=0.8, rgb=True))
-            if not coor:
-                swipe([500, 900], [500, 500])
-                swipe_count -= 1
-            else:  # Choose friend and break
-                touch(coor)
-                sleep(1.5)
-                break
-            if swipe_count == 0:
-                touch(iphone.refreshList)  # 列表刷新
-                sleep(1)
-                touch(iphone.refreshBtn)  # 是
-                sleep(1)
-                swipe_count = 5
-        if swipe_count == -1:
-            return  # TODO 错误处理
+        else:
+            swipe_count = 7
+            while True:
+                coor = exists(Template(friend, threshold=0.8, rgb=True))
+                if not coor:
+                    swipe([500, 900], [500, 500])
+                    swipe_count -= 1
+                else:  # Choose friend and break
+                    touch(coor)
+                    sleep(1.5)
+                    break
+                if swipe_count == 0:
+                    touch(iphone.refreshList)  # 列表刷新
+                    sleep(1)
+                    touch(iphone.refreshBtn)  # 是
+                    sleep(1)
+                    swipe_count = 5
+            if swipe_count == -1:
+                return  # TODO 错误处理
         coor = exists(Template(r"common/开始任务.png", threshold=0.8))
         if coor:
             touch(coor)
