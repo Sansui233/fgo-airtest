@@ -32,7 +32,7 @@ def team1(left_round=0):
 
 def teamqige(left_round=0):
     '''
-    齐格 C呆 10np
+    齐格 C呆 10np衣服
     站位: 齐呆呆
     '''
     if left_round < 0:
@@ -45,13 +45,17 @@ def teamqige(left_round=0):
     op.skillChoose(3, 1)
     op.skillChoose(2, 2, 1)
     op.skillChoose(3, 2, 1)
-    op.attack(1, 2, 2, 4, 2, 5)
+    op.skillChoose(2, 3, 1)
+    op.skillChoose(3, 3, 1)
+    op.attack(1, 1, 2, 4, 2, 5)
     wait(Template(r"common/攻击.jpeg", rgb=True), timeout=20, interval=1)
     op.attack(1, 1, 2, 4, 2, 5)
     wait(Template(r"common/攻击.jpeg", rgb=True), timeout=20, interval=1)
     op.skillChoose(1, 2)
     op.masterSkillChoose(1, 1)
-    op.attack(1, 1, 2, 4, 3, 5)
+    op.attack(1, 1, 2, 4, 2, 5)
+    # 这个队伍刷90本要补刀
+    op.finalAttack()
 
     op.ending(left_round > 0)
 
@@ -64,7 +68,7 @@ def teamchin(left_round=0):
     if left_round < 0:
         return
 
-    op.chooseFriend(r"20212020圣诞/friend2.jpeg")
+    op.chooseFriend(r"teams/assets/C呆.jpeg")
     # 一面
     wait(Template(r"common/攻击.jpeg", rgb=True), timeout=20, interval=1)
     op.skillChoose(2, 1)
@@ -88,4 +92,5 @@ def teamchin(left_round=0):
     op.skillChoose(3, 1)
     op.skillChoose(3, 2, 1)
     op.attack(1, 1, 2, 1, 2, 2, 18)
+
     op.ending(left_round > 0)

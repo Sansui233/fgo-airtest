@@ -1,7 +1,7 @@
 from airtest.core.api import *
 from cv2 import threshold
 from threading import Thread
-from lib.iphone7_plus import iphone7p as iphone
+from lib.iphone13_pro import iphone13p as iphone
 
 
 class op:
@@ -15,12 +15,24 @@ class op:
         第一行宝具卡，第二行普通指令卡
         """
         touch(iphone.attackBtn)
-        sleep(1.5)
+        sleep(1)
         touch(iphone.attackPos[x - 1][y - 1])
-        touch(iphone.attackPos[x - 1][y - 1])
+        touch(iphone.attackPos[x2 - 1][y2 - 1])
+        touch(iphone.attackPos[x3 - 1][y3 - 1])
         sleep(delay)
-        touch((10, 300))
+        touch([10, 300])
         sleep(5)
+
+    def finalAttack(timeout=10):
+        """
+        看情况补个刀，队伍不稳定时用。稳定时别用，拖速度
+        """
+        try:
+            wait(Template(r"common/攻击.jpeg", threshold=0.8,
+                 rgb=True), timeout=timeout, interval=1)
+            op.attack(2, 1, 2, 4, 2, 5, 0)
+        except TargetNotFoundError:
+            return
 
     def chooseFriend(friend):
         """
@@ -51,9 +63,9 @@ class op:
         coor = exists(Template(r"common/开始任务.png", threshold=0.8))
         if coor:
             touch(coor)
-        sleep(5)
+        sleep(3)
 
-    def skillChoose(servant: int, skill: int, svt=-1, delay=3):
+    def skillChoose(servant: int, skill: int, svt=-1, delay=1):
         """
         选择从者技能
         servant: 从者位置，取值1-3
@@ -62,11 +74,10 @@ class op:
         """
         touch(iphone.skillChoose[servant - 1][skill - 1])
         touch(iphone.skillConfirmBtn)
-        sleep(.3)
-        touch(1162, 361)
+        touch([1162, 361])
         if svt != -1:
             touch(iphone.skillSvtPos[svt - 1])
-            touch((10, 300))
+            touch([10, 300])
         sleep(delay)
 
     def masterSkillChoose(num: int, svt=-1, delay=3):
@@ -78,27 +89,22 @@ class op:
         touch(iphone.masterSkill)
         touch(iphone.masterSkillPos[num - 1])
         touch(iphone.skillConfirmBtn)
-        touch(100, 10)
+        sleep(.3)
         if svt != -1:
             touch(iphone.skillSvtPos[svt - 1])
-            touch((10, 300))
         sleep(delay)
 
     def masterChangeOrderPos(svt1: int, svt2: int, delay=5):
         """
         换人服的从者位置，svt1, svt2 为从者位置，取值 1-6，且不可为相同数字
         """
-        touch((iphone.orderPos[svt1 - 1], 587))
-        sleep(0.3)
-        touch((iphone.orderPos[svt2 - 1], 587))
-        sleep(0.3)
+        touch(iphone.orderPos[svt1 - 1], 587)
+        touch(iphone.orderPos[svt2 - 1], 587)
         touch(iphone.orderPosConfirm)  # 进行更替
+        touch([10, 300])
         sleep(delay)
 
     def ending(eatApple=False):
-        '''
-        处理结尾
-        '''
         wait(
             Template(
                 r"common/与从者的羁绊.png", record_pos=(-0.351, -0.136), resolution=(2208, 1242)
@@ -106,11 +112,11 @@ class op:
             timeout=45,
             interval=1,
         )
-        touch((100, 10))
+        touch([100, 10])
         sleep(1)
-        touch((100, 10))
+        touch([100, 10])
         sleep(1)
-        touch((100, 10))
+        touch([100, 10])
         sleep(1)  # 防止意外情况，升级什么的
         touch(iphone.nextBtn)
         sleep(1)

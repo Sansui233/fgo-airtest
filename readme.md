@@ -2,16 +2,24 @@
 
 FGO 全自动刷本 3T 脚本模板，速度接近手刷。对手机的控制依赖于 [Airtest](https://airtest.doc.io.netease.com/)，Airtest 能连接到的手机即可使用，理论上不限平台。但安卓已经有更方便的脚本了，所以这里主要针对 iOS。
 
+主要优点
+- 高度自定义 3T，适合宝具队
+- 速度还不错，稍微逊色于手势录制，优于全图像匹配
+- 不开虚拟机与模拟器，较小的 CPU 和内存负担
 
+缺点
+- 环境部署麻烦
+- 首次录入屏幕坐标麻烦
 
 <details>
- <summary>不同平台可使用的自动刷本方法汇总：</summary>
-<li>Windows + Android: [FGO-py](https://github.com/hgjazhgj/FGO-py) 或 模拟器 + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))</li>
-<li>Windows + iOS: [虫洞](https://er.run/) + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))</li>
-<li>Mac + iOS: Airtest</li>
-<li>Mac + Android: Airtest 或 模拟器 + 按键精灵</li>
+ <summary>不同平台可使用的自动刷本方法汇总</summary>
+ <ul>
+  <li>Windows + Android: [FGO-py](https://github.com/hgjazhgj/FGO-py) 或 模拟器 + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))</li>
+  <li>Windows + iOS: [虫洞](https://er.run/) + 按键精灵（如[BBchannel](https://www.bilibili.com/read/readlist/rl474502))</li>
+  <li>Mac + iOS: Airtest</li>
+  <li>Mac + Android: Airtest 或 模拟器 + 按键精灵</li>
+ </ul>
 </details>
-
 
 使用前先部署好环境（这一步需要花亿些时间）。airtest IDE 可以不用装，但得确保安装 airtest 的 python 模块。
 - [Mac + iOS 环境部署教程](https://zhuanlan.zhihu.com/p/414629796)
@@ -19,13 +27,16 @@ FGO 全自动刷本 3T 脚本模板，速度接近手刷。对手机的控制依
 
 ## 运行方式
 
-下载此仓库。打开`daily.py`，里面包含三个自用编队，可增加自己的编队。编队的入口为助战选择界面，需要进入助战选择界面后开始运行。
+下载此仓库。打开`daily.py`，参考已有例子编写自己编队的 3T 操作。编队的入口为助战选择界面，需要进入游戏的助战选择界面后开始运行。
 
-以下运行仅为示例，按自己的编队写的流程，**请先[修改脚本](#修改脚本)，不要直接运行在你的编队上**。
+然后运行 main.py 即可。运行前一定先**先[修改脚本](#修改脚本)，不要直接运行在你的编队上**（~~也没事最多浪费 40AP~~）
 
 ```shell
-python3 main.py 队伍名 运行次数
+python3 main.py 编队函数名 运行次数
 ```
+
+运行截图：
+![](https://raw.githubusercontent.com/NamiLing/upic/master/uPic/W2zcvo.png)
 
 ## 修改编队
 
