@@ -4,6 +4,9 @@ from cv2 import threshold
 from threading import Thread
 from lib.iphone13_pro import iphone13p as iphone
 
+logger = logging.getLogger("actions")
+logger.setLevel(logging.DEBUG)
+
 
 class op:
     """
@@ -54,7 +57,7 @@ class op:
                     swipe_count -= 1
                 else:  # Choose friend and break
                     touch(coor)
-                    sleep(1.5)
+                    sleep(2.2)
                     break
                 if swipe_count == 0:
                     touch(iphone.refreshList)  # 列表刷新
@@ -108,7 +111,7 @@ class op:
         touch([10, 300])
         sleep(delay)
 
-    def ending(eatApple=False):
+    def ending(eatApple):
         wait(
             Template(  # 现在改名叫牵绊了，反正能用，将就了
                 r"common/与从者的羁绊.png", record_pos=(-0.351, -0.136), resolution=(2208, 1242)
@@ -128,19 +131,27 @@ class op:
         sleep(.5)
         touch(iphone.continueBattleBtn)
         sleep(1)
+        logger.debug("timing: 吃苹果 %s" % str(eatApple))
         if eatApple:
             op._eatApple()
         sleep(3)
+        logger.debug("timing: 结尾动画处理完毕")
 
     def _eatApple():
         """
         检测是否出现苹果补充界面，出现了就补苹果
         """
-        coor = exists(Template(r"common/黄金果实.PNG"))
+        coor = exists(Template(r"common/白银果实.jpeg", threshold=0.7, rgb=True))
+        if not coor:
+            coor = exists(Template(r"common/黄金果实.jpeg",
+                          threshold=0.7, rgb=True))
         if coor:
             touch(coor)
-            sleep(1)
+            sleep(.5)
             touch(iphone.confirmApple)
+            sleep(1.3)
+        else:
+            logger.debug("没出现苹果页")
 
     def clickRetry():
         coor = exists(Template(r"common/重试.jpeg"))
