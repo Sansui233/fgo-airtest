@@ -13,7 +13,7 @@ def team1(left_round=0):
     if left_round < 0:
         return
 
-    op.chooseFriend((1000, 600))  # 助战选择，不限助战，坐标乱点
+    op.chooseFriend([1000, 600])  # 助战选择，不限助战，坐标乱点
 
     # 战斗
     wait(Template(r"common/攻击.jpeg", rgb=True), timeout=20, interval=1)
@@ -28,6 +28,30 @@ def team1(left_round=0):
 
     # 处理结尾
     op.ending(left_round > 0)
+
+
+def teammogen(left_round=0):
+    if left_round < 0:
+        return
+    op.chooseFriend([1000, 500])
+    wait(Template(r"common/攻击.jpeg", rgb=True), timeout=20, interval=1)
+    op.skillChoose(1, 2, 1)
+    op.masterSkillChoose(3, 1)
+    op.attack(1, 1, 2, 4, 2, 5)
+    wait(Template(r"common/攻击.jpeg", rgb=True), timeout=20, interval=1)
+    op.skillChoose(1, 1)
+    op.skillChoose(3, 1)
+    op.skillChoose(3, 2, 1)
+    op.masterSkillChoose(1, 1)
+    op.attack(1, 1, 2, 4, 2, 5)
+    wait(Template(r"common/攻击.jpeg", rgb=True), timeout=20, interval=1)
+    op.skillChoose(2, 1, 2)
+    op.skillChoose(2, 2, 2)
+    op.skillChoose(2, 3, 2)
+    op.skillChoose(3, 3, 2)
+    op.attack(1, 2, 2, 3, 2, 5)
+    op.finalAttack()  # 运气极其差时要补刀
+    op.ending()
 
 
 def teamqige(left_round=0):

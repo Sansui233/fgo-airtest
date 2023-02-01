@@ -31,12 +31,15 @@ class op:
             wait(Template(r"common/攻击.jpeg", threshold=0.8,
                  rgb=True), timeout=timeout, interval=1)
             op.attack(2, 1, 2, 4, 2, 5, 0)
+            sleep(5)
+            touch([10, 300])
+            sleep(5)
         except TargetNotFoundError:
-            return
+            pass
 
     def chooseFriend(friend):
         """
-        助战选择，传入图片文件路径，或一个屏幕坐标，比如(1121,332)
+        助战选择，传入图片文件路径，或一个屏幕坐标，比如[1121,332]
         """
         if not isinstance(friend, str):  # if not string,treate it as coordiante
             touch(friend)
@@ -74,13 +77,12 @@ class op:
         """
         touch(iphone.skillChoose[servant - 1][skill - 1])
         touch(iphone.skillConfirmBtn)
-        touch([1162, 361])
         if svt != -1:
             touch(iphone.skillSvtPos[svt - 1])
-            touch([10, 300])
+        touch([1162, 361])
         sleep(delay)
 
-    def masterSkillChoose(num: int, svt=-1, delay=3):
+    def masterSkillChoose(num: int, svt=-1, delay=1.3):
         """
         选择 master 的技能,
         num: 御主技能位置，取值 1-3
@@ -92,9 +94,10 @@ class op:
         sleep(.3)
         if svt != -1:
             touch(iphone.skillSvtPos[svt - 1])
+            touch([10, 300])
         sleep(delay)
 
-    def masterChangeOrderPos(svt1: int, svt2: int, delay=5):
+    def masterChangeOrderPos(svt1: int, svt2: int, delay=4):
         """
         换人服的从者位置，svt1, svt2 为从者位置，取值 1-6，且不可为相同数字
         """
@@ -106,7 +109,7 @@ class op:
 
     def ending(eatApple=False):
         wait(
-            Template(
+            Template(  # 现在改名叫牵绊了，反正能用，将就了
                 r"common/与从者的羁绊.png", record_pos=(-0.351, -0.136), resolution=(2208, 1242)
             ),
             timeout=45,
@@ -135,7 +138,7 @@ class op:
         coor = exists(Template(r"common/黄金果实.PNG"))
         if coor:
             touch(coor)
-            sleep(.3)
+            sleep(1)
             touch(iphone.confirmApple)
 
     def clickRetry():
